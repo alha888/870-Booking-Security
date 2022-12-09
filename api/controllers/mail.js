@@ -11,30 +11,27 @@ import bodyParser from "body-parser";
 export const getUserInfo = async (req, res, next) => {
   
     try {
-        const user = await User.findOne({ username: req.body.username });
+        let user = await User.findOne({ username: req.body.username });
         if (!user) return next(createError(404, "User not found!"));  
         
-        const secret = authenticator.generateSecret();
-        const code6 = authenticator.generate(secret);
+        let secret = authenticator.generateSecret();
+        let code6 = authenticator.generate(secret);
+        
+        await User.findByIdAndUpdate(
+            user._id,
+            {$set:{secret:secret,code6:code6}},
+            {new:true},
+            )
+            
+            user = await User.findOne({ username: req.body.username });
 
-        // const updatedUser = await user.update(
-        //     {username: user.username},
-        //     {secret:secret,code6:code6},
-        //     {new:true},
-        // )
-
-        res.status(200).json({user,secret,code6})
+       res.status(200).json({user})
     
     } catch (err) {
     next(err);
   }
 
 };
-
-
-
-
-
 
 export const sendMail = async (req, res, next) => {
   
@@ -61,6 +58,8 @@ export const sendMail = async (req, res, next) => {
                <strong style="color: #ff4e2a;">${req.body.code6}</strong>
             </p>`
         })
+
+        res.status(200).send("Mail send successful!");
 
   } catch (err) {
     next(err);

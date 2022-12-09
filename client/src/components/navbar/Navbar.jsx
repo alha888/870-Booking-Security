@@ -12,7 +12,12 @@ const Navbar = () => {
         <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
           <span className="logo">Alvin</span>
         </Link>
-        {user ? user.username : (
+        {user ? 
+        
+        
+        user.username
+        
+        : (
           <div className="navItems">
             <button className="navButton" onClick={() => navigate("/register")}>Register</button>
             <button className="navButton" onClick={() => navigate("/login")}>Login</button>

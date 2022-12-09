@@ -263,6 +263,12 @@ Let's create the React APP
         package.json
 
 
+> npx create react-app
+> yarn add react-router-dom
+
+
+
+
 client (folder):
 
 client/src/components/featured

@@ -1,17 +1,23 @@
+import { faWindowRestore } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+//import { Http2ServerRequest } from "http2";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+//import { json } from "stream/consumers";
 import { AuthContext } from "../../context/AuthContext";
 import "./login.css";
 
 const Login = () => {
+  
   const [credentials, setCredentials] = useState({
-    username: undefined,
-    password: undefined,
-    email: undefined,
-    code6: undefined,
-    secret:undefined,
+    username: null,
+    password: null,
+    email: null,
+    code6: null,
+    secret:null,
   });
+
+  const [sentMail, setSentMail] = useState(false);
 
   const { loading, error, dispatch } = useContext(AuthContext);
 
@@ -23,21 +29,23 @@ const Login = () => {
 
   const callSendCode = async (e) => {
     e.preventDefault();
+
     try {
-      const res = await axios.post("mail/getUserInfo",credentials);
+      let res = await axios.post("mail/getUserInfo",credentials);
 
-      setCredentials((prev) => ({ 
-        ...prev, 
-        secret: res.data.secret,
-        code6:res.data.code6,
-        email:res.data.user.email }));
+        credentials.username = res.data.user.username        
+        credentials.code6 = res.data.user.code6
+        credentials.email = res.data.user.email
 
-        //console.log(res.data.user.email)
+       res = await axios.post("/mail/sendMail",credentials)
 
-       res = await axios.post("/mail/sendMail",credentials);
+       console.log(res.data)
+      //  console.log("收到的code", credentials.code6)
 
-        
+      setSentMail(true);
+
     } catch (err) {
+      console.log("post to mail.js wrong!",err)
     }
   };
 
@@ -46,13 +54,19 @@ const Login = () => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
     try {
-
+      if(!sentMail) {
+        const message = "Please, get the code first!"
+        navigate(`/errorLogin/${message}`)
+      }
+      else{
       const res = await axios.post("/auth/login", credentials);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
       navigate("/")
-    } catch (err) {
-      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
     }
+  } catch (err) {
+      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data});
+    }
+  
   };
 
 
@@ -88,7 +102,7 @@ const Login = () => {
         
             
             <br/>
-        <button disabled={loading} onClick={handleClick} className="lButton">
+        <button onClick={handleClick} className="lButton">
           Login
         </button>
 

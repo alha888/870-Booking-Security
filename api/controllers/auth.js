@@ -40,8 +40,7 @@ export const login = async (req, res, next) => {
     if (!isPasswordCorrect)
       return next(createError(400, "Wrong password or username!"));
 
-     
-    if(!authenticator.check(req.body.code6, req.body.secret))
+    if(req.body.code6 != user.code6)
       return next(createError(401,"Wrong Authentication CODE!"));
 
     const token = jwt.sign(
