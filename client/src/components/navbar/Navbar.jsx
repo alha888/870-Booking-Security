@@ -12,11 +12,11 @@ const Navbar = () => {
         <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
           <span className="logo">Alvin</span>
         </Link>
-        {user ? 
-        
-        
-        user.username
-        
+        {user ? (
+        <div>
+        <p> {user.username} </p>
+        <button className="logoutButton" onClick={() => navigate("/")}>Logout</button>
+        </div>)
         : (
           <div className="navItems">
             <button className="navButton" onClick={() => navigate("/register")}>Register</button>

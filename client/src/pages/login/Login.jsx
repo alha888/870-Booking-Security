@@ -55,20 +55,22 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
     try {
       if(!sentMail) {
-        const message = "Please, get the code first!"
+        let message = "Please, get the code first!"
         navigate(`/errorLogin/${message}`)
       }
       else{
+
       const res = await axios.post("/auth/login", credentials);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
       navigate("/")
     }
   } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data});
+
+      navigate(`/errorLogin/${error.message}`)
     }
   
   };
-
 
   return (
     <div className="login">
@@ -97,6 +99,7 @@ const Login = () => {
                 type="text" 
                 className="auth-code-input" 
                 id="code6" 
+                onChange={handleChange}
                 />
 
         
