@@ -86,13 +86,12 @@ const Header = ({ type }) => {
         {type !== "list" && (
           <>
             <h1 className="headerTitle">
-              A lifetime of discounts? It's Genius.
+              This is a web-based Hotel booking system for INCS-870 Project I!
             </h1>
             <p className="headerDesc">
-              Get rewarded for your travels – unlock instant savings of 10% or
-              more with a free Lamabooking account
+              We focused on implementation of some security modules!
             </p>
-            {!user && <button className="headerBtn">Sign in / Register</button>}
+            {!user && <button className="headerBtn" onClick={() => navigate("/input")}>Administrator! Create Hotels/Rooms here!</button>}
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />

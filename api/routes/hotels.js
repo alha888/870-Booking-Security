@@ -5,6 +5,7 @@ import {
   createHotel,
   deleteHotel,
   getHotel,
+  getHotelByName,
   getHotelRooms,
   getHotels,
   updateHotel,
@@ -24,6 +25,7 @@ router.delete("/:id", verifyAdmin, deleteHotel);
 //GET
 
 router.get("/find/:id", getHotel);
+router.get("/findByName/:name", getHotelByName);
 //GET ALL
 
 router.get("/", getHotels);

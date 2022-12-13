@@ -40,6 +40,17 @@ export const getHotel = async (req, res, next) => {
     next(err);
   }
 };
+
+export const getHotelByName = async (req, res, next) => {
+  try {
+    const hotel = await Hotel.findOne({name:req.params.name});
+    if (!hotel) return next(createError(404, "Hotel not found!"));
+    res.status(200).json(hotel);
+  } catch (err) {
+    next(err);
+  }
+};
+
 export const getHotels = async (req, res, next) => {
   const { min, max, ...others } = req.query;
   try {
