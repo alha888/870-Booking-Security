@@ -4,10 +4,10 @@ import { createError } from "../utils/error.js";
 import jwt from "jsonwebtoken";
 
 //2022-12-05
-import { authenticator } from "otplib";
-import QRCode from "qrcode";
-import { expressjwt } from "express-jwt";
-import bodyParser from "body-parser";
+// import { authenticator } from "otplib";
+// import QRCode from "qrcode";
+// import { expressjwt } from "express-jwt";
+// import bodyParser from "body-parser";
 
 export const register = async (req, res, next) => {
   
@@ -60,3 +60,5 @@ export const login = async (req, res, next) => {
     next(err);
   }
 };
+
+

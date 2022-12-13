@@ -9,6 +9,7 @@ import List from "./pages/list/List";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Auth2fa from "./pages/auth2fa/Auth2fa";
+import Input from "./pages/input/Input";
 import ErrorLogin from "./pages/login/ErrorLogin";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/auth2fa" element={<Auth2fa/>}/>
+        <Route path="/input" element={<Input/>}/>
         <Route path="/errorLogin/:message" element={<ErrorLogin/>}/>
       </Routes>
     </BrowserRouter>
