@@ -10,11 +10,11 @@ import "./login.css";
 const Login = () => {
   
   const [credentials, setCredentials] = useState({
-    username: null,
-    password: null,
-    email: null,
-    code6: null,
-    secret:null,
+    username: undefined,
+    password: undefined,
+    email: undefined,
+    code6: undefined,
+    secret:undefined,
   });
 
   const [sentMail, setSentMail] = useState(false);
@@ -92,7 +92,7 @@ const Login = () => {
         <br />
         <br />
       <button onClick={callSendCode}      className="SendCodeButton">
-                  Send me a Authentication CODE
+                  Send me an Authentication CODE
                 </button>
         <label className="auth-code-label"/>Input the Authentication CODE: <br/>
             <input 

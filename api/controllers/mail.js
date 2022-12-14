@@ -45,7 +45,6 @@ export const sendMail = async (req, res, next) => {
               pass: (process.env.ORTH_PASS),  // SMTP orthpass
             }
         }));
-
         
         let info = await transport.sendMail({
             from: "Booking <alvinxu@gmail.com>",
