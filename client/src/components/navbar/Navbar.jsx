@@ -9,8 +9,8 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navContainer">
-        <Link to="/input" style={{ color: "inherit", textDecoration: "none" }}>
-          测试！<span className="logo"></span>
+        <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
+          Get Back Homepage <span className="logo"></span>
         </Link>
         {user ? (
         <div>
