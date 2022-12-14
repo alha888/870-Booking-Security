@@ -10,7 +10,7 @@ const Navbar = () => {
     <div className="navbar">
       <div className="navContainer">
         <Link to="/input" style={{ color: "inherit", textDecoration: "none" }}>
-          <span className="logo"></span>
+          测试！<span className="logo"></span>
         </Link>
         {user ? (
         <div>
