@@ -1,8 +1,7 @@
-
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-//import "./input.css";
+
 
 const Input = () => {
   
@@ -25,6 +24,8 @@ const Input = () => {
     maxPeople: undefined,
     desc: undefined,
     });
+
+  const [rooms, setRooms] = useState([]);  
 
   const navigate = useNavigate()
 
@@ -51,8 +52,11 @@ const Input = () => {
   const inputRoomInfo = async (e) => {
     e.preventDefault();
     try {
+      
+      const roomNumbers = rooms.split(",").map((room) => ({ number: room }));
+      
       const res = await axios.get(`/hotels/findByName/${credentialsR.roomInHotel}`);
-      await axios.post(`/rooms/${res.data._id}`, credentialsR);
+      await axios.post(`/rooms/${res.data._id}`, { ...credentialsR, roomNumbers });
 
       navigate("/input")
 
@@ -140,13 +144,13 @@ const Input = () => {
           onChange={handleChangeHotel}
           className="hotelCheapestPriceInput"
         /><br />
+
         
         <br />
       <button onClick={inputHotelInfo}                  className="inputHotelButton">
                   Create a Hotel
                 </button>
     </div><br/>
-
 
 
 
@@ -196,6 +200,14 @@ const Input = () => {
         /><br />
         
         
+              <div className="formRoomInput">
+                <label>Rooms</label>
+                <textarea
+                  onChange={(e) => setRooms(e.target.value)}
+                  placeholder="give comma between room numbers."
+                />
+              </div>
+
         <br />
       <button onClick={inputRoomInfo}                  className="inputRoomButton">
                   Add the room into a Hotel

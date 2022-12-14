@@ -91,7 +91,9 @@ const Header = ({ type }) => {
             <p className="headerDesc">
               We focused on implementation of some security modules!
             </p>
-            {!user && <button className="headerBtn" onClick={() => navigate("/input")}>Administrator! Create Hotels/Rooms here!</button>}
+            {!user && <button className="createInfoBtn" onClick={() => navigate("/input")}>
+              Administrator! Create Hotels/Rooms here!</button>}
+           
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />

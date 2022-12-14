@@ -74,7 +74,7 @@ const List = () => {
                     className="lsOptionInput"
                   />
                 </div>
-                <div className="lsOptionItem">
+                {/* <div className="lsOptionItem">
                   <span className="lsOptionText">Adult</span>
                   <input
                     type="number"
@@ -100,7 +100,7 @@ const List = () => {
                     className="lsOptionInput"
                     placeholder={options.room}
                   />
-                </div>
+                </div> */}
               </div>
             </div>
             <button onClick={handleClick}>Search</button>
